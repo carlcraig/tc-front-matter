@@ -1,0 +1,28 @@
+services:
+
+    tc.front_matter.factory:
+        class: 'Tc\FrontMatter\Bridge\Symfony\Factory\FrontMatterFactory'
+        public: false
+
+    tc.front_matter.adapter.yaml:
+        class: 'Tc\FrontMatter\Adapter\YamlAdapter'
+        public: false
+
+    tc.front_matter.adapter.json:
+        class: 'Tc\FrontMatter\Adapter\JsonAdapter'
+        public: false
+
+    tc.front_matter.yaml:
+        class: 'Tc\FrontMatter\FrontMatter'
+        factory: 'tc.front_matter.factory:createFrontMatter'
+        arguments:
+            - '@tc.front_matter.adapter.yaml'
+
+    tc.front_matter.json:
+        class: 'Tc\FrontMatter\FrontMatter'
+        factory: 'tc.front_matter.factory:createFrontMatter'
+        arguments:
+            - '@tc.front_matter.adapter.json'
+
+    tc.front_matter:
+        alias: 'tc.front_matter.yaml'
