@@ -10,8 +10,14 @@ Installation
 composer require tc/front-matter
 ```
 
-Usage
------
+Adapters
+--------
+
+- YAML
+- JSON
+
+Example Usage
+-------------
 
 ```php
 <?php
@@ -104,6 +110,34 @@ class DefaultController extends Controller
     }
 }
 ```
+
+Custom Adapters
+---------------
+
+You can create your own custom adapters to parse and dump front matter.
+
+All you need to do is implement `Tc\FrontMatter\Adapter\AdapterInterface`
+
+You can then create a new instance of front matter using your adapter. e.g.
+
+```php
+<?php
+
+$myFrontMatter = new FrontMatter(new FooAdapter());
+```
+
+If you are using symfony you can register your adapters as a service,
+and tag them. e.g.
+
+```
+foo_adapter:
+    class: 'AppBundle\Adapter\FooAdapter'
+    tags:
+        - {name: tc.front_matter.adapter, adapter_name: foo}
+```
+
+The front matter bundle will then auto generate a front matter service for you: `tc.front_matter.foo`
+
 
 License
 -------

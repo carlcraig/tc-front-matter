@@ -2,7 +2,6 @@ services:
 
     tc.front_matter.factory:
         class: 'Tc\FrontMatter\Bridge\Symfony\Factory\FrontMatterFactory'
-        public: false
 
     tc.front_matter.adapter.yaml:
         class: 'Tc\FrontMatter\Adapter\YamlAdapter'
